@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="service1" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="NetTcpBinding_IService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <msf:WindowsTransportSecurity xmlns:msf="http://schemas.microsoft.com/ws/2006/05/framing/policy">
+                  <msf:ProtectionLevel>EncryptAndSign</msf:ProtectionLevel>
+                </msf:WindowsTransportSecurity>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256 />
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict />
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://192.168.22.32:8031/MyService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.22.32:8031/MyService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.22.32:8031/MyService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.IO" />
+      <xsd:import schemaLocation="http://192.168.22.32:8031/MyService?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IService_HelloWorld_InputMessage">
+    <wsdl:part name="parameters" element="tns:HelloWorld" />
+  </wsdl:message>
+  <wsdl:message name="IService_HelloWorld_OutputMessage">
+    <wsdl:part name="parameters" element="tns:HelloWorldResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_IsCopyThreadIsAlive_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCopyThreadIsAlive" />
+  </wsdl:message>
+  <wsdl:message name="IService_IsCopyThreadIsAlive_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCopyThreadIsAliveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CloseCopyThread_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseCopyThread" />
+  </wsdl:message>
+  <wsdl:message name="IService_CloseCopyThread_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseCopyThreadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Echo_InputMessage">
+    <wsdl:part name="parameters" element="tns:Echo" />
+  </wsdl:message>
+  <wsdl:message name="IService_Echo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EchoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Ping_InputMessage">
+    <wsdl:part name="parameters" element="tns:Ping" />
+  </wsdl:message>
+  <wsdl:message name="IService_Ping_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetVerbose_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetVerbose" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetVerbose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetVerboseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDrivesInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDrivesInfo" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetDrivesInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDrivesInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetVerbose_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVerbose" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetVerbose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVerboseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_MarkLastFileAsUploaded_InputMessage">
+    <wsdl:part name="parameters" element="tns:MarkLastFileAsUploaded" />
+  </wsdl:message>
+  <wsdl:message name="IService_MarkLastFileAsUploaded_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MarkLastFileAsUploadedResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCurrentUploadedFileInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUploadedFileInfo" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCurrentUploadedFileInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCurrentUploadedFileInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetClientGuid_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientGuid" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetClientGuid_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetClientGuidResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_OpenTCPStreamingClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:OpenTCPStreamingClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_OpenTCPStreamingClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:OpenTCPStreamingClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToStreamingServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToStreamingServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToStreamingServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToStreamingServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartWatch" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartWatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetWatsonRunning_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetWatsonRunning" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetWatsonRunning_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetWatsonRunningResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWatchWrongFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartWatchWrongFiles" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWatchWrongFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartWatchWrongFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_getGuild_InputMessage">
+    <wsdl:part name="parameters" element="tns:getGuild" />
+  </wsdl:message>
+  <wsdl:message name="IService_getGuild_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getGuildResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SyncFilesWithDataBase_InputMessage">
+    <wsdl:part name="parameters" element="tns:SyncFilesWithDataBase" />
+  </wsdl:message>
+  <wsdl:message name="IService_SyncFilesWithDataBase_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SyncFilesWithDataBaseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopWatchWrongFiles_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopWatchWrongFiles" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopWatchWrongFiles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopWatchWrongFilesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CloseDropBoxConnection_InputMessage">
+    <wsdl:part name="parameters" element="tns:CloseDropBoxConnection" />
+  </wsdl:message>
+  <wsdl:message name="IService_CloseDropBoxConnection_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseDropBoxConnectionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_InitiateSingleUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:InitiateSingleUpload" />
+  </wsdl:message>
+  <wsdl:message name="IService_InitiateSingleUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitiateSingleUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetCopyThreadTimeEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetCopyThreadTimeEvent" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetCopyThreadTimeEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetCopyThreadTimeEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_CleanFifoHandler_InputMessage">
+    <wsdl:part name="parameters" element="tns:CleanFifoHandler" />
+  </wsdl:message>
+  <wsdl:message name="IService_CleanFifoHandler_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CleanFifoHandlerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopWatch_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopWatch" />
+  </wsdl:message>
+  <wsdl:message name="IService_StopWatch_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopWatchResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DisconnectRepositoryStreamingClient_InputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectRepositoryStreamingClient" />
+  </wsdl:message>
+  <wsdl:message name="IService_DisconnectRepositoryStreamingClient_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DisconnectRepositoryStreamingClientResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Register_InputMessage">
+    <wsdl:part name="parameters" element="tns:Register" />
+  </wsdl:message>
+  <wsdl:message name="IService_Register_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToFileServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToFileServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_ConnectToFileServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ConnectToFileServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_UploadFileToServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileToServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_UploadFileToServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadFileToServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_Close_InputMessage">
+    <wsdl:part name="parameters" element="tns:Close" />
+  </wsdl:message>
+  <wsdl:message name="IService_Close_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CloseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RefreshFileList_InputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshFileList" />
+  </wsdl:message>
+  <wsdl:message name="IService_RefreshFileList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RefreshFileListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetStatistics_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatistics" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetStatistics_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatisticsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWCFStreamingServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartWCFStreamingServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartWCFStreamingServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartWCFStreamingServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFifoThreshold_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFifoThreshold" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetFifoThreshold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFifoThresholdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCopyThreadTimeEvent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCopyThreadTimeEvent" />
+  </wsdl:message>
+  <wsdl:message name="IService_GetCopyThreadTimeEvent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCopyThreadTimeEventResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllWatsonGenerateFilesTimeSpanBeforeNow_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllWatsonGenerateFilesTimeSpanBeforeNow" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllWatsonGenerateFilesTimeSpanBeforeNow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllWatsonGenerateFilesTimeSpanBeforeNowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllUploadedFilesTimeSpanBeforeNow_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllUploadedFilesTimeSpanBeforeNow" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllUploadedFilesTimeSpanBeforeNow_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllUploadedFilesTimeSpanBeforeNowResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddDateToUploadTargetFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddDateToUploadTargetFolder" />
+  </wsdl:message>
+  <wsdl:message name="IService_AddDateToUploadTargetFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddDateToUploadTargetFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllUploadedFilesOnServer_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllUploadedFilesOnServer" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllUploadedFilesOnServer_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllUploadedFilesOnServerResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetWCFStreamingServerRepositoryFolder_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetWCFStreamingServerRepositoryFolder" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetWCFStreamingServerRepositoryFolder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetWCFStreamingServerRepositoryFolderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetFifoThreshold_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetFifoThreshold" />
+  </wsdl:message>
+  <wsdl:message name="IService_SetFifoThreshold_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetFifoThresholdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxInitialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxInitialize" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxInitialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxInitializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxClose_InputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxClose" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxClose_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxCloseResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxUpload_InputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxUpload" />
+  </wsdl:message>
+  <wsdl:message name="IService_DropBoxUpload_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DropBoxUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldDaysBefore_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldDaysBefore" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldDaysBefore_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldDaysBeforeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldBetweenDates_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldBetweenDates" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldBetweenDates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldBetweenDatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldStartingFromDate_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldStartingFromDate" />
+  </wsdl:message>
+  <wsdl:message name="IService_DeleteAllFilesFromFieldStartingFromDate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteAllFilesFromFieldStartingFromDateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartDropBoxUploadMode_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartDropBoxUploadMode" />
+  </wsdl:message>
+  <wsdl:message name="IService_StartDropBoxUploadMode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartDropBoxUploadModeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_RunBoxInitialize_InputMessage">
+    <wsdl:part name="parameters" element="tns:RunBoxInitialize" />
+  </wsdl:message>
+  <wsdl:message name="IService_RunBoxInitialize_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RunBoxInitializeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService_NotifyCallbackMessage_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyCallbackMessage" />
+  </wsdl:message>
+  <wsdl:message name="IService_NotifyDataCallback_OutputCallbackMessage">
+    <wsdl:part name="parameters" element="tns:NotifyDataCallback" />
+  </wsdl:message>
+  <wsdl:portType msc:usingSession="true" name="IService">
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="HelloWorld">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/HelloWorld" message="tns:IService_HelloWorld_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/HelloWorldResponse" message="tns:IService_HelloWorld_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="IsCopyThreadIsAlive">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/IsCopyThreadIsAlive" message="tns:IService_IsCopyThreadIsAlive_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/IsCopyThreadIsAliveResponse" message="tns:IService_IsCopyThreadIsAlive_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CloseCopyThread">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CloseCopyThread" message="tns:IService_CloseCopyThread_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CloseCopyThreadResponse" message="tns:IService_CloseCopyThread_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Echo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Echo" message="tns:IService_Echo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/EchoResponse" message="tns:IService_Echo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Ping">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Ping" message="tns:IService_Ping_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/PingResponse" message="tns:IService_Ping_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetVerbose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetVerbose" message="tns:IService_SetVerbose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetVerboseResponse" message="tns:IService_SetVerbose_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetDrivesInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetDrivesInfo" message="tns:IService_GetDrivesInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetDrivesInfoResponse" message="tns:IService_GetDrivesInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetVerbose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetVerbose" message="tns:IService_GetVerbose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetVerboseResponse" message="tns:IService_GetVerbose_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="MarkLastFileAsUploaded">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/MarkLastFileAsUploaded" message="tns:IService_MarkLastFileAsUploaded_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/MarkLastFileAsUploadedResponse" message="tns:IService_MarkLastFileAsUploaded_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCurrentUploadedFileInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCurrentUploadedFileInfo" message="tns:IService_GetCurrentUploadedFileInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetCurrentUploadedFileInfoResponse" message="tns:IService_GetCurrentUploadedFileInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetClientGuid">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetClientGuid" message="tns:IService_GetClientGuid_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetClientGuidResponse" message="tns:IService_GetClientGuid_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="OpenTCPStreamingClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/OpenTCPStreamingClient" message="tns:IService_OpenTCPStreamingClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/OpenTCPStreamingClientResponse" message="tns:IService_OpenTCPStreamingClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ConnectToStreamingServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ConnectToStreamingServer" message="tns:IService_ConnectToStreamingServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ConnectToStreamingServerResponse" message="tns:IService_ConnectToStreamingServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartWatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StartWatch" message="tns:IService_StartWatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StartWatchResponse" message="tns:IService_StartWatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetWatsonRunning">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetWatsonRunning" message="tns:IService_SetWatsonRunning_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetWatsonRunningResponse" message="tns:IService_SetWatsonRunning_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartWatchWrongFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StartWatchWrongFiles" message="tns:IService_StartWatchWrongFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StartWatchWrongFilesResponse" message="tns:IService_StartWatchWrongFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="getGuild">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/getGuild" message="tns:IService_getGuild_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/getGuildResponse" message="tns:IService_getGuild_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SyncFilesWithDataBase">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SyncFilesWithDataBase" message="tns:IService_SyncFilesWithDataBase_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SyncFilesWithDataBaseResponse" message="tns:IService_SyncFilesWithDataBase_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StopWatchWrongFiles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StopWatchWrongFiles" message="tns:IService_StopWatchWrongFiles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StopWatchWrongFilesResponse" message="tns:IService_StopWatchWrongFiles_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CloseDropBoxConnection">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CloseDropBoxConnection" message="tns:IService_CloseDropBoxConnection_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CloseDropBoxConnectionResponse" message="tns:IService_CloseDropBoxConnection_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="InitiateSingleUpload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/InitiateSingleUpload" message="tns:IService_InitiateSingleUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/InitiateSingleUploadResponse" message="tns:IService_InitiateSingleUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetCopyThreadTimeEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetCopyThreadTimeEvent" message="tns:IService_SetCopyThreadTimeEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetCopyThreadTimeEventResponse" message="tns:IService_SetCopyThreadTimeEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="CleanFifoHandler">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/CleanFifoHandler" message="tns:IService_CleanFifoHandler_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CleanFifoHandlerResponse" message="tns:IService_CleanFifoHandler_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StopWatch">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StopWatch" message="tns:IService_StopWatch_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StopWatchResponse" message="tns:IService_StopWatch_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DisconnectRepositoryStreamingClient">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DisconnectRepositoryStreamingClient" message="tns:IService_DisconnectRepositoryStreamingClient_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DisconnectRepositoryStreamingClientResponse" message="tns:IService_DisconnectRepositoryStreamingClient_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Register">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Register" message="tns:IService_Register_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RegisterResponse" message="tns:IService_Register_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="ConnectToFileServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/ConnectToFileServer" message="tns:IService_ConnectToFileServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/ConnectToFileServerResponse" message="tns:IService_ConnectToFileServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="UploadFileToServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/UploadFileToServer" message="tns:IService_UploadFileToServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/UploadFileToServerResponse" message="tns:IService_UploadFileToServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="Close">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/Close" message="tns:IService_Close_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/CloseResponse" message="tns:IService_Close_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RefreshFileList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RefreshFileList" message="tns:IService_RefreshFileList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RefreshFileListResponse" message="tns:IService_RefreshFileList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetStatistics">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetStatistics" message="tns:IService_GetStatistics_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetStatisticsResponse" message="tns:IService_GetStatistics_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartWCFStreamingServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StartWCFStreamingServer" message="tns:IService_StartWCFStreamingServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StartWCFStreamingServerResponse" message="tns:IService_StartWCFStreamingServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetFifoThreshold">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetFifoThreshold" message="tns:IService_GetFifoThreshold_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetFifoThresholdResponse" message="tns:IService_GetFifoThreshold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="GetCopyThreadTimeEvent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/GetCopyThreadTimeEvent" message="tns:IService_GetCopyThreadTimeEvent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/GetCopyThreadTimeEventResponse" message="tns:IService_GetCopyThreadTimeEvent_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllWatsonGenerateFilesTimeSpanBeforeNow">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllWatsonGenerateFilesTimeSpanBeforeNow" message="tns:IService_DeleteAllWatsonGenerateFilesTimeSpanBeforeNow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllWatsonGenerateFilesTimeSpanBeforeNowResponse" message="tns:IService_DeleteAllWatsonGenerateFilesTimeSpanBeforeNow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllUploadedFilesTimeSpanBeforeNow">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllUploadedFilesTimeSpanBeforeNow" message="tns:IService_DeleteAllUploadedFilesTimeSpanBeforeNow_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllUploadedFilesTimeSpanBeforeNowResponse" message="tns:IService_DeleteAllUploadedFilesTimeSpanBeforeNow_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="AddDateToUploadTargetFolder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/AddDateToUploadTargetFolder" message="tns:IService_AddDateToUploadTargetFolder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/AddDateToUploadTargetFolderResponse" message="tns:IService_AddDateToUploadTargetFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllUploadedFilesOnServer">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllUploadedFilesOnServer" message="tns:IService_DeleteAllUploadedFilesOnServer_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllUploadedFilesOnServerResponse" message="tns:IService_DeleteAllUploadedFilesOnServer_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetWCFStreamingServerRepositoryFolder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetWCFStreamingServerRepositoryFolder" message="tns:IService_SetWCFStreamingServerRepositoryFolder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetWCFStreamingServerRepositoryFolderResponse" message="tns:IService_SetWCFStreamingServerRepositoryFolder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="SetFifoThreshold">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/SetFifoThreshold" message="tns:IService_SetFifoThreshold_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/SetFifoThresholdResponse" message="tns:IService_SetFifoThreshold_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DropBoxInitialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DropBoxInitialize" message="tns:IService_DropBoxInitialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DropBoxInitializeResponse" message="tns:IService_DropBoxInitialize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DropBoxClose">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DropBoxClose" message="tns:IService_DropBoxClose_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DropBoxCloseResponse" message="tns:IService_DropBoxClose_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DropBoxUpload">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DropBoxUpload" message="tns:IService_DropBoxUpload_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DropBoxUploadResponse" message="tns:IService_DropBoxUpload_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllFilesFromFieldDaysBefore">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldDaysBefore" message="tns:IService_DeleteAllFilesFromFieldDaysBefore_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldDaysBeforeResponse" message="tns:IService_DeleteAllFilesFromFieldDaysBefore_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllFilesFromFieldBetweenDates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldBetweenDates" message="tns:IService_DeleteAllFilesFromFieldBetweenDates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldBetweenDatesResponse" message="tns:IService_DeleteAllFilesFromFieldBetweenDates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="DeleteAllFilesFromFieldStartingFromDate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldStartingFromDate" message="tns:IService_DeleteAllFilesFromFieldStartingFromDate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/DeleteAllFilesFromFieldStartingFromDateResponse" message="tns:IService_DeleteAllFilesFromFieldStartingFromDate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="StartDropBoxUploadMode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/StartDropBoxUploadMode" message="tns:IService_StartDropBoxUploadMode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/StartDropBoxUploadModeResponse" message="tns:IService_StartDropBoxUploadMode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="RunBoxInitialize">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService/RunBoxInitialize" message="tns:IService_RunBoxInitialize_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/RunBoxInitializeResponse" message="tns:IService_RunBoxInitialize_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyCallbackMessage">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/NotifyCallbackMessage" message="tns:IService_NotifyCallbackMessage_OutputCallbackMessage" />
+    </wsdl:operation>
+    <wsdl:operation msc:isInitiating="true" msc:isTerminating="false" name="NotifyDataCallback">
+      <wsdl:output wsaw:Action="http://tempuri.org/IService/NotifyDataCallback" message="tns:IService_NotifyDataCallback_OutputCallbackMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="NetTcpBinding_IService" type="tns:IService">
+    <wsp:PolicyReference URI="#NetTcpBinding_IService_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="HelloWorld">
+      <soap12:operation soapAction="http://tempuri.org/IService/HelloWorld" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCopyThreadIsAlive">
+      <soap12:operation soapAction="http://tempuri.org/IService/IsCopyThreadIsAlive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseCopyThread">
+      <soap12:operation soapAction="http://tempuri.org/IService/CloseCopyThread" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Echo">
+      <soap12:operation soapAction="http://tempuri.org/IService/Echo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Ping">
+      <soap12:operation soapAction="http://tempuri.org/IService/Ping" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetVerbose">
+      <soap12:operation soapAction="http://tempuri.org/IService/SetVerbose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDrivesInfo">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetDrivesInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVerbose">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetVerbose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MarkLastFileAsUploaded">
+      <soap12:operation soapAction="http://tempuri.org/IService/MarkLastFileAsUploaded" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrentUploadedFileInfo">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetCurrentUploadedFileInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClientGuid">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetClientGuid" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OpenTCPStreamingClient">
+      <soap12:operation soapAction="http://tempuri.org/IService/OpenTCPStreamingClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectToStreamingServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/ConnectToStreamingServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartWatch">
+      <soap12:operation soapAction="http://tempuri.org/IService/StartWatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWatsonRunning">
+      <soap12:operation soapAction="http://tempuri.org/IService/SetWatsonRunning" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartWatchWrongFiles">
+      <soap12:operation soapAction="http://tempuri.org/IService/StartWatchWrongFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGuild">
+      <soap12:operation soapAction="http://tempuri.org/IService/getGuild" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SyncFilesWithDataBase">
+      <soap12:operation soapAction="http://tempuri.org/IService/SyncFilesWithDataBase" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopWatchWrongFiles">
+      <soap12:operation soapAction="http://tempuri.org/IService/StopWatchWrongFiles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseDropBoxConnection">
+      <soap12:operation soapAction="http://tempuri.org/IService/CloseDropBoxConnection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InitiateSingleUpload">
+      <soap12:operation soapAction="http://tempuri.org/IService/InitiateSingleUpload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCopyThreadTimeEvent">
+      <soap12:operation soapAction="http://tempuri.org/IService/SetCopyThreadTimeEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CleanFifoHandler">
+      <soap12:operation soapAction="http://tempuri.org/IService/CleanFifoHandler" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopWatch">
+      <soap12:operation soapAction="http://tempuri.org/IService/StopWatch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DisconnectRepositoryStreamingClient">
+      <soap12:operation soapAction="http://tempuri.org/IService/DisconnectRepositoryStreamingClient" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Register">
+      <soap12:operation soapAction="http://tempuri.org/IService/Register" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConnectToFileServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/ConnectToFileServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UploadFileToServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/UploadFileToServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Close">
+      <soap12:operation soapAction="http://tempuri.org/IService/Close" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RefreshFileList">
+      <soap12:operation soapAction="http://tempuri.org/IService/RefreshFileList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStatistics">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetStatistics" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartWCFStreamingServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/StartWCFStreamingServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFifoThreshold">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetFifoThreshold" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCopyThreadTimeEvent">
+      <soap12:operation soapAction="http://tempuri.org/IService/GetCopyThreadTimeEvent" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllWatsonGenerateFilesTimeSpanBeforeNow">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllWatsonGenerateFilesTimeSpanBeforeNow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllUploadedFilesTimeSpanBeforeNow">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllUploadedFilesTimeSpanBeforeNow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddDateToUploadTargetFolder">
+      <soap12:operation soapAction="http://tempuri.org/IService/AddDateToUploadTargetFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllUploadedFilesOnServer">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllUploadedFilesOnServer" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWCFStreamingServerRepositoryFolder">
+      <soap12:operation soapAction="http://tempuri.org/IService/SetWCFStreamingServerRepositoryFolder" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetFifoThreshold">
+      <soap12:operation soapAction="http://tempuri.org/IService/SetFifoThreshold" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropBoxInitialize">
+      <soap12:operation soapAction="http://tempuri.org/IService/DropBoxInitialize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropBoxClose">
+      <soap12:operation soapAction="http://tempuri.org/IService/DropBoxClose" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DropBoxUpload">
+      <soap12:operation soapAction="http://tempuri.org/IService/DropBoxUpload" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFilesFromFieldDaysBefore">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllFilesFromFieldDaysBefore" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFilesFromFieldBetweenDates">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllFilesFromFieldBetweenDates" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteAllFilesFromFieldStartingFromDate">
+      <soap12:operation soapAction="http://tempuri.org/IService/DeleteAllFilesFromFieldStartingFromDate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartDropBoxUploadMode">
+      <soap12:operation soapAction="http://tempuri.org/IService/StartDropBoxUploadMode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RunBoxInitialize">
+      <soap12:operation soapAction="http://tempuri.org/IService/RunBoxInitialize" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyCallbackMessage">
+      <soap12:operation soapAction="http://tempuri.org/IService/NotifyCallbackMessage" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyDataCallback">
+      <soap12:operation soapAction="http://tempuri.org/IService/NotifyDataCallback" style="document" />
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="service1">
+    <wsdl:port name="NetTcpBinding_IService" binding="tns:NetTcpBinding_IService">
+      <soap12:address location="net.tcp://192.168.22.32:8030/MyService" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://192.168.22.32:8030/MyService</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Upn>elia@RF-Dynamics.local</Upn>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
